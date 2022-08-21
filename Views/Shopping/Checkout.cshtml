@@ -1,0 +1,164 @@
+﻿<link href="~/css/theme-color/momo.css" rel="stylesheet" />
+<script src="~/js/momo.js"></script>
+<!-- catg header banner section -->
+<section id="aa-catg-head-banner">
+    <img src="~/img/fashion/Checkout.jpg" alt="fashion img">
+    <div class="aa-catg-head-banner-area">
+        <div class="container">
+            <div class="aa-catg-head-banner-content">
+                <h2>Checkout Page</h2>
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">Checkout</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / catg header banner section -->
+<!-- Cart view section -->
+<section id="checkout">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="checkout-area">
+                    <form action="/Shopping/Order" method="post">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="checkout-left">
+                                    <div class="panel-group" id="accordion">
+                                        <!-- Coupon section -->
+                                        <div class="panel panel-default aa-checkout-coupon">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                        Have a Coupon?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <input type="text" placeholder="Coupon Code" class="aa-coupon-code">
+                                                    <input type="submit" value="Apply Coupon" class="aa-browse-btn">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Shipping Address -->
+                                        <div class="panel panel-default aa-checkout-billaddress">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                                        Shippping Address
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFour" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="aa-checkout-single-bill">
+                                                                <label for="">Yourname<span>*</span></label>
+                                                                <input name="HoTen" type="text" value="@ViewBag.Ten.HoTen" disabled placeholder="@ViewBag.Ten.HoTen">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="aa-checkout-single-bill">
+                                                                <label for="">YourID<span>*</span></label>
+                                                                <input name="MaKH" type="text" value="@ViewBag.Ten.MaKH" placeholder="@ViewBag.Ten.MaKH">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="aa-checkout-single-bill">
+                                                                <label for="">PhoneNumber<span>*</span></label>
+                                                                <input name="SoDT" type="text" value="@ViewBag.Ten.DienThoai" placeholder="@ViewBag.Ten.DienThoai">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="aa-checkout-single-bill">
+                                                                <label for="">Address</label>
+                                                                <textarea name="DiaChi" placeholder="Address" cols="8" rows="3">Address</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="checkout-right">
+                                    <h4>Order Summary</h4>
+                                    <div class="aa-order-summary-area">
+                                        <table class="table table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th>Product</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (ViewBag.GioHang != null)
+                                                {
+                                                    foreach (var item in ViewBag.GioHang)
+                                                    {
+                                                        <tr>
+                                                            <td>@item.TenSanPham <strong> x  @item.SoLuong</strong></td>
+                                                            <td>$@(Math.Round((double)item.Giaban *(1 - item.Sale),0) * item.SoLuong)</td>
+                                                        </tr>
+                                                    }
+                                                }
+
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>Subtotal</th>
+                                                    <td>$@ViewBag.Total</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Tax</th>
+                                                    <td>$0</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Total</th>
+                                                    <td>$@ViewBag.Total</td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <h4>Payment Method</h4>
+                                    <div class="aa-payment-method">
+                                        <label for="cashdelivery"><input type="radio" id="cashdelivery" name="optionsRadios" checked> Cash on Delivery </label>
+                                        <label for="paypal"><input type="radio" id="paypal" name="optionsRadios"> Via Paypal </label>
+                                        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" border="0" alt="PayPal Acceptance Mark">
+                                        <input type="submit" value="Place Order" class="aa-browse-btn">
+                                        <p class="paywith_momo" onclick="pay_momo()">Place Order With Momo</p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>>
+<!-- momo -->
+<div id="momo">
+    <div class="img_pay">
+        <img src="~/img/momo.jpg" />
+    </div>
+    <div class="acction_pay">
+        <input type="text" name="số điện thoại" placeholder="Mời bạn nhập SĐT">
+        <button id="btn_pay" onclick="thanhtoan()">Xác nhận</button>
+    </div>
+</div>
+<!-- / Cart view section -->

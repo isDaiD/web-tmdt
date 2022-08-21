@@ -1,0 +1,19 @@
+﻿@foreach (var item in ViewBag.TheLoai)
+{
+    if (item.TenChuDe == "Pants")
+    {
+        <li><a href="@Url.Action("Product", "Shopping", new { id = 1 })">@item.TenChuDe</a></li>
+    }
+    else if (item.TenChuDe == "Shirt")
+    {
+        <li><a href="@Url.Action("Product", "Shopping", new { id = 11 })">@item.TenChuDe</a></li>
+    }
+    else if (item.TenChuDe == "Watch")
+    {
+        <li><a href="@Url.Action("Product", "Shopping", new { id = 21 })">@item.TenChuDe</a></li>
+    }
+    else if (item.TenChuDe == "Sport")
+    {
+        <li><a href="@Url.Action("Product", "Shopping", new { id = 31 })">@item.TenChuDe</a></li>
+    }
+}

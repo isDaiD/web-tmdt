@@ -1,0 +1,16 @@
+﻿@if (ViewBag.GioHang != null)
+{
+    foreach (var item in ViewBag.GioHang)
+    {
+    <li>
+        <a class="aa-cartbox-img" href="#"><img src="@item.Hinh1" alt="img"></a>
+        <div class="aa-cartbox-info">
+            <h4><a href="#">@item.TenSanPham</a></h4>
+            <p>@item.SoLuong x $@(Math.Round((double)item.Giaban *(1 - item.Sale),0))</p>
+        </div>
+        <a class="aa-remove-product" href="@Url.Action("RemoveFormCart", "Shopping", new {id = item.MaSanPham })"><span class="fa fa-times"></span></a>
+    </li>
+    }
+}
+
+

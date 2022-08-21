@@ -1,0 +1,9 @@
+﻿@if (ViewBag.User == null)
+{
+    <a href="" data-toggle="modal" data-target="#login-modal">Login</a>
+    <br />
+}
+else
+{
+    <a href="@Url.Action("_SignOut", "Account")" class="font-weight-bold">Sign Out</a>
+}

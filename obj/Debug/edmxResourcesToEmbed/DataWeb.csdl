@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CHITIETDONTHANG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaDonHang" Type="Int32" Nullable="false" />
+    <Property Name="MaSanPham" Type="Int32" Nullable="false" />
+    <Property Name="Soluong" Type="Int32" />
+    <Property Name="Dongia" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="DONDATHANG" Relationship="Self.FK_CHITIETDONTHANG_DONDATHANG" FromRole="CHITIETDONTHANG" ToRole="DONDATHANG" />
+    <NavigationProperty Name="SANPHAM" Relationship="Self.FK_CHITIETDONTHANG_SACH" FromRole="CHITIETDONTHANG" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="CHUDE">
+    <Key>
+      <PropertyRef Name="MaCD" />
+    </Key>
+    <Property Name="MaCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenChuDe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Stt" Type="Int32" />
+    <NavigationProperty Name="SANPHAMs" Relationship="Self.FK_Chude" FromRole="CHUDE" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="DONDATHANG">
+    <Key>
+      <PropertyRef Name="MaDonHang" />
+    </Key>
+    <Property Name="MaDonHang" Type="Int32" Nullable="false" />
+    <Property Name="TongTien" Type="Int32" />
+    <Property Name="Tinhtranggiaohang" Type="Boolean" />
+    <Property Name="Ngaydat" Type="DateTime" Precision="3" />
+    <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MaKH" Type="Int32" />
+    <Property Name="SDT" Type="Int32" />
+    <NavigationProperty Name="CHITIETDONTHANGs" Relationship="Self.FK_CHITIETDONTHANG_DONDATHANG" FromRole="DONDATHANG" ToRole="CHITIETDONTHANG" />
+    <NavigationProperty Name="KHACHHANG" Relationship="Self.FK_DONDATHANG_KHACHHANG" FromRole="DONDATHANG" ToRole="KHACHHANG" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="3" />
+    <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DONDATHANGs" Relationship="Self.FK_DONDATHANG_KHACHHANG" FromRole="KHACHHANG" ToRole="DONDATHANG" />
+  </EntityType>
+  <EntityType Name="NHACUNGCAP">
+    <Key>
+      <PropertyRef Name="MaNCC" />
+    </Key>
+    <Property Name="MaNCC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenNCC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Diachi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SANPHAMs" Relationship="Self.FK_NhaXB" FromRole="NHACUNGCAP" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="SANPHAM">
+    <Key>
+      <PropertyRef Name="MaSanPham" />
+    </Key>
+    <Property Name="MaSanPham" Type="Int32" Nullable="false" />
+    <Property Name="TenSanPham" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Giaban" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="MaCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SoLuongAnh" Type="Int32" />
+    <Property Name="Hinh1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh11" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh12" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh13" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh14" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh15" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Ngaycapnhat" Type="DateTime" Precision="3" />
+    <Property Name="Soluongton" Type="Int32" />
+    <Property Name="MaNCC" Type="Int32" />
+    <Property Name="Sale" Type="Double" />
+    <Property Name="DaXoa" Type="Boolean" />
+    <NavigationProperty Name="CHITIETDONTHANGs" Relationship="Self.FK_CHITIETDONTHANG_SACH" FromRole="SANPHAM" ToRole="CHITIETDONTHANG" />
+    <NavigationProperty Name="CHUDE" Relationship="Self.FK_Chude" FromRole="SANPHAM" ToRole="CHUDE" />
+    <NavigationProperty Name="NHACUNGCAP" Relationship="Self.FK_NhaXB" FromRole="SANPHAM" ToRole="NHACUNGCAP" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_CHITIETDONTHANG_DONDATHANG">
+    <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="1" />
+    <End Role="CHITIETDONTHANG" Type="Self.CHITIETDONTHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONDATHANG">
+        <PropertyRef Name="MaDonHang" />
+      </Principal>
+      <Dependent Role="CHITIETDONTHANG">
+        <PropertyRef Name="MaDonHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETDONTHANG_SACH">
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+    <End Role="CHITIETDONTHANG" Type="Self.CHITIETDONTHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="MaSanPham" />
+      </Principal>
+      <Dependent Role="CHITIETDONTHANG">
+        <PropertyRef Name="MaSanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Chude">
+    <End Role="CHUDE" Type="Self.CHUDE" Multiplicity="0..1" />
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHUDE">
+        <PropertyRef Name="MaCD" />
+      </Principal>
+      <Dependent Role="SANPHAM">
+        <PropertyRef Name="MaCD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONDATHANG_KHACHHANG">
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+    <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="DONDATHANG">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NhaXB">
+    <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="0..1" />
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHACUNGCAP">
+        <PropertyRef Name="MaNCC" />
+      </Principal>
+      <Dependent Role="SANPHAM">
+        <PropertyRef Name="MaNCC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBWebEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CHITIETDONTHANGs" EntityType="Self.CHITIETDONTHANG" />
+    <EntitySet Name="CHUDEs" EntityType="Self.CHUDE" />
+    <EntitySet Name="DONDATHANGs" EntityType="Self.DONDATHANG" />
+    <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
+    <EntitySet Name="NHACUNGCAPs" EntityType="Self.NHACUNGCAP" />
+    <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_CHITIETDONTHANG_DONDATHANG" Association="Self.FK_CHITIETDONTHANG_DONDATHANG">
+      <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
+      <End Role="CHITIETDONTHANG" EntitySet="CHITIETDONTHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETDONTHANG_SACH" Association="Self.FK_CHITIETDONTHANG_SACH">
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+      <End Role="CHITIETDONTHANG" EntitySet="CHITIETDONTHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Chude" Association="Self.FK_Chude">
+      <End Role="CHUDE" EntitySet="CHUDEs" />
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONDATHANG_KHACHHANG" Association="Self.FK_DONDATHANG_KHACHHANG">
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+      <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NhaXB" Association="Self.FK_NhaXB">
+      <End Role="NHACUNGCAP" EntitySet="NHACUNGCAPs" />
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DBWebModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DBWebModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
